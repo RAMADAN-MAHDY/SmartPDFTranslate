@@ -49,7 +49,11 @@
 
 ## 🔧 المتطلبات البيئية
 قم بإنشاء ملف `.env` يحتوي على المتغيرات التالية:
-
+```bash
+GEMINI_API_KEY=your_google_gemini_api_key
+MONGODB_URI=your_mongodb_connection_string
+session_secret_key=your_session_secret
+```
 ---
 
 ## 🚀 التثبيت والتشغيل
@@ -127,6 +131,12 @@ This tool enables users to upload PDF files, translate their content using AI (G
 
 ## Environment Variables
 Create a `.env` file with:
+
+```bash
+GEMINI_API_KEY=your_google_gemini_api_key
+MONGODB_URI=your_mongodb_connection_string
+session_secret_key=your_session_secret
+```
 
 ## Installation & Running
 1. Install dependencies:
