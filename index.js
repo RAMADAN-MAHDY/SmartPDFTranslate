@@ -1,22 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import connectDB from './db.js';
-import ContactRouter from './router/ContactRouter.js';
-import ContactRouterAdmin from './router/ContactRouterAdmin.js';
-import getMessage from './router/getMessage.js'; 
-import getConversations from './router/getConversations.js';
 import cookieParser from "cookie-parser";
 import Dotenv from 'dotenv';
-import chatRouter from './router/chat.js';
-import getMessageAdmin from './router/getMessageToAdmin.js';
-import subscription from './router/save-subscription.js';
-import unsubscription from './router/unsubscribe.js';
-import sendNotificationToAll from './webpush/sendNotificationToAll.js';
 import { getIronSession } from "iron-session";
-import AiAsestant from './GEMINI_API/aiChat.js';
-import aiTranslate from './GEMINI_API/aiTranslate.js';
-import generateWordRouter from './GEMINI_API/generateWordFromText.js';
-import uploadRouter from './GEMINI_API/uploadRouter.js';
+import aiTranslate from './Routes&&Controller/aiTranslate.js';
+import generateWordRouter from './Routes&&Controller/generateWordFromText.js';
+import uploadRouter from './Routes&&Controller/uploadRouter.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -74,16 +64,6 @@ app.use(async (req, res, next) => {
   // "production"
 
 // Purpose: To handle the routes for the contact form
-app.use('/contact', ContactRouter);
-app.use('/admin-reply', ContactRouterAdmin);
-app.use('/message', getMessage);
-app.use('/getMessageAdmin', getMessageAdmin);
-app.use("/conversations", getConversations);
-app.use('/chat', chatRouter);
-app.use('/unsubscription', unsubscription);
-app.use('/subscription', subscription);
-app.use('/sendNotificationToAll', sendNotificationToAll);
-app.use('/ai', AiAsestant);
 app.use('/ai', aiTranslate);
 app.use('/ai', generateWordRouter);
 app.use('/upload', uploadRouter);
@@ -93,13 +73,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Route لعرض صفحة رفع الملفات
-app.get('/upload-view', (req, res) => {
-  res.render('upload');
-});
-
 app.get('/', async (req, res) => {
-
-
     if (!req.session.views) {
         req.session.views = 1;
       } else {
